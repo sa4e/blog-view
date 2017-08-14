@@ -1,4 +1,4 @@
-package cn.sa4e.blog.controller.test;
+package cn.sa4e.blog.service.test;
 
 import java.util.List;
 
@@ -22,13 +22,13 @@ public class TestUserService {
 	
 	@Test
 	public void testInsert() throws Exception{
-		User user = new User("sa4e", "123", "hasaigive@gmail.com");
+		User user = new User("kryst4l", "123", "hasaigive@gmail.com");
 		userService.insert(user);
 	}
 	
 	@Test
 	public void testGetAllUser() throws Exception{
 		List<User> userList = userService.getAllUser();
-		Assert.assertEquals(userList.size(), 2);
+		Assert.assertEquals(userList.size(), 3);
 	}
 }

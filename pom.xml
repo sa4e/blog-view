@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>cn.sa4e</groupId>
 			<artifactId>blog-interface</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<!-- Thymeleaf -->
 		<dependency>
