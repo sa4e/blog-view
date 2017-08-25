@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<title>index</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="layui/css/layui.css" th:href="@{layui/css/layui.css}"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/blog.css"
+    					   th:href="@{/css/blog.css}"/>
+  </head>
+  <body>
+  	
+	<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #FFFFCC;">
+		<div class="container">
+			<a class="navbar-brand" href="#">
+				<img src="images/logo.png" width="30" height="30" alt="logo" class="d-inline-block align-top"/>
+				Flame
+			</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Link</a>
+	      </li>
+	       <li class="nav-item">
+	        <a class="nav-link" href="#">Tags</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Categories</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">About</a>
+	      </li>
+	    </ul>
+	    <form class="form-inline my-2 my-lg-0">
+	      <input id="indexKeyWord" class="form-control form-control-sm mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
+	      <button class="btn btn-sm btn-warning my-2 my-sm-0" type="submit">Search</button>
+	    </form>
+	  </div>
+		</div>
+	</nav>	<!-- ./nav -->
+
+    <div class="blog-header">
+      <div class="container">
+        <h1 class="blog-title">Sa4e's Personal Blog</h1>
+        <p class="lead blog-description">一个基于Bootstrap和SpringBoot技术栈的极简风个人博客</p>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+			
+          <div class="blog-post" th:each="blog : ${blogList}">
+            <a href="content.html" th:href="@{/content/{id}(id=${blog.id})}" target="_blank" class="blog-post-title" th:text="${blog.title}">基于SpringBoot技术栈的个人博客</a>
+            <p class="blog-post-meta">[[${#dates.format(blog.createTime, 'yyyy/MM/dd')}]] By <a href="#">sa4e</a>
+            	<i class="layui-icon layui-col-md-offset7 blog-hot">&#xe756;&nbsp;</i><span style="color: #BD4147;">100&nbsp;℃</span>
+            </p>
+            <p th:text="${blog.summary}">Spring Boot技术是当前Java应用框架的热门。市面上对于Spring Boot的需求很旺盛，虽然有很多的技术资料来介绍Spring Boot这门技术，但缺乏实战。特别是在围绕Spring Boot技术栈来构建完整的企业级应用这个课程，讲师给出了自己的见解。</p>
+            <p>
+            	<a href="#" th:href="@{/content/{id}(id=${blog.id})}" target="_blank" class="btn btn-sm btn-warning">More...</a>
+            </p>
+          </div><!-- /.blog-post -->
+			
+        <div id="page">
+        	
+        </div>
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 ml-sm-auto blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>关于</h4>
+            <p>
+            	站长:<em>Sa4e</em> 中文名:<em>赖威良</em>
+            	一个热爱生活,热爱技术,理想成为全栈工程师的程序猿,永远相信努力的人运气不要太差!
+            </p>
+          </div>
+          <div class="sidebar-module">
+            <h4>档案</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+              <li><a href="#">February 2014</a></li>
+              <li><a href="#">January 2014</a></li>
+              <li><a href="#">December 2013</a></li>
+              <li><a href="#">November 2013</a></li>
+              <li><a href="#">October 2013</a></li>
+              <li><a href="#">September 2013</a></li>
+              <li><a href="#">August 2013</a></li>
+              <li><a href="#">July 2013</a></li>
+              <li><a href="#">June 2013</a></li>
+              <li><a href="#">May 2013</a></li>
+              <li><a href="#">April 2013</a></li>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>其他链接</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>Developer by <a href="https://twitter.com/mdo">@Sa4e</a>.</p>
+    </footer>
+	
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="layui/layui.js" th:src="@{/layui/layui.js}"></script>
+   	<script src="js/blog/index.js" th:src="@{/js/blog/index.js}"></script>
+  </body>
+</html>

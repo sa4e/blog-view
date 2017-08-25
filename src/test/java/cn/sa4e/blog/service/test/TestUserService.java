@@ -29,6 +29,6 @@ public class TestUserService {
 	@Test
 	public void testGetAllUser() throws Exception{
 		List<User> userList = userService.getAllUser();
-		Assert.assertEquals(userList.size(), 3);
+		Assert.assertEquals(userList.size(),4);
 	}
 }
