@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
 	<title>博客后台</title>
 	<meta charset="UTF-8">
@@ -10,11 +11,9 @@
 <body>
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo">Flame 后台</div>
+    <div class="layui-logo">Blog 后台</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
-      <li class="layui-nav-item"><a href="">控制台</a></li>
-      <li class="layui-nav-item"><a href="">商品管理</a></li>
       <li class="layui-nav-item"><a href="">用户</a></li>
       <li class="layui-nav-item">
         <a href="javascript:;">其它系统</a>
@@ -33,163 +32,50 @@
         </a>
         <dl class="layui-nav-child">
           <dd><a href="">基本资料</a></dd>
-          <dd><a href="">安全设置</a></dd>
+          <dd><a href="">退出</a></dd>
         </dl>
       </li>
-      <li class="layui-nav-item"><a href="">退了</a></li>
     </ul>
   </div>  <!-- ./顶部导航栏 -->
   
-    <div class="layui-side layui-bg-black">
+    <div class="layui-side layui-bg-gray">
     <div class="layui-side-scroll">
+      <ul id="tree" style="padding-top: 6px;"></ul>
       
-      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-        <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">文章管理</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">文章列表</a></dd>
-            <dd><a href="javascript:;">列表二</a></dd>
-            <dd><a href="javascript:;">列表三</a></dd>
-            <dd><a href="">超链接</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">解决方案</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">列表一</a></dd>
-            <dd><a href="javascript:;">列表二</a></dd>
-            <dd><a href="">超链接</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item"><a href="">云市场</a></li>
-        <li class="layui-nav-item"><a href="">发布商品</a></li>
-      </ul>
     </div>
   </div>	<!-- ./左侧 侧边栏 -->
   
-  <div class="layui-body">
-    <div style="padding: 15px;">
-    	<div class="layui-tab layui-tab-card" lay-allowClose="true" lay-filter="tab">
-    		<ul class="layui-tab-title">
-			    <li class="layui-this">文章列表</li>
-			</ul>
-			  <div class="layui-tab-content">
-			    <div class="layui-tab-item layui-show">
-					<form class="layui-form" th:action="@{/root/publish}" th:method="post">
-						<div class="layui-form-item">
-							<label class="layui-form-label">文章标题</label>
-							<div class="layui-input-block">
-								<input name="title" type="text" lay-verify="required|title" class="layui-input" placeholder="请输入标题:" />
-							</div>
-						</div>
-						<div class="layui-form-item layui-form-text">
-							<label class="layui-form-label">文章摘要</label>
-							<div class="layui-input-block">
-								<textarea name="summary" lay-verify="required" class="layui-textarea" placeholder="请输入摘要:"></textarea>
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">分类</label>
-							<div class="layui-input-inline">
-								<select name="catagory">
-									<option value="">请选择分类</option>
-									<option value="java">java</option>
-									<option value="springboot">springboot</option>
-									<option value="springdata">springdata</option>
-									<option value="mysql">mysql</option>
-									<option value="nginx">nginx</option>
-								</select>
-							</div>
-						</div>
-						<div class="layui-form-item" pane="">
-						    <label class="layui-form-label">是否显示</label>
-							    <div class="layui-input-block">
-							      <input name="show" value="true" checked="" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF" type="checkbox">
-							    </div>
-						  </div>
-						  <div class="layui-form-item" pane="">
-						    <label class="layui-form-label">是否置顶</label>
-							    <div class="layui-input-block">
-							      <input name="top" value="true" lay-skin="switch" lay-text="ON|OFF" type="checkbox">
-							    </div>
-						  </div>
-						<!-- <div class="layui-form-item">
-							<div class="layui-inline">
-								<label class="layui-form-label">日期选择</label>
-								<div class="layui-input-block">
-									<input name="createTime" id="date" autocomplete="off" class="layui-input" type="text"/>
-								</div>
-							</div>
-						</div> -->
-						<div class="layui-form-item layui-form-text">
-						    <label class="layui-form-label">编辑器</label>
-						    <div class="layui-input-block">
-						    <textarea name="content" class="layui-textarea layui-hide" lay-verify="content" id="editor"></textarea>
-					    </div>
-					  </div>
-					  <div class="layui-form-item">
-					    <div class="layui-input-block">
-					      <button class="layui-btn" lay-submit="" lay-filter="publish">发布</button>
-					      <button class="layui-btn layui-btn-primary" type="reset">重置</button>
-					    </div>
-					  </div>
-					</form>  
-			    </div>
-			  </div>
-    	</div>
-    </div>
+  <div id="content" class="layui-body">
+    <iframe name="ifc" frameborder="0" height="100%" width="100%" scrolling="auto"></iframe>
+    
+    
   </div>	<!-- ./内容主体区域 -->
   
   <div class="layui-footer">
     © sa4e.cn
   </div>	<!-- ./底部固定区域 -->
 </div>
+  <script src="../js/jquery.min.js" type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+  <script src="../layui/layui.js" type="text/javascript" th:src="@{/layui/layui.js}"></script>
   
-  
-  <script src="../layui/layui.js" th:src="@{/layui/layui.js}"></script>
   <script>
-  	//JavaScript代码区域
-	layui.use(['form','layedit','laydate','layer','element'], function(){
-	  var form = layui.form
-	  ,layedit = layui.layedit
-	  ,laydate = layui.laydate
-	  ,layer = layui.layer
-	  ,element = layui.element;
-	  
-	//日期
-	laydate.render({
-    	elem: '#date'
+  	var nodes;
+  	$(function(){
+  		$.get("/json/tree-menu.json",function(data){		//异步请求获取树形菜单
+  			nodes = data;
+  		},'json');
   	});
-	  
-	//创建一个编辑器
-  	var editIndex = layedit.build('editor');
   	
-  	//自定义验证规则
-	  form.verify({
-	  	title: function(value) {
-	  		if(value.length < 5) {
-	  			return '标题至少得5个字符啊';
-	  		}
-	  	},
-	  	content: function(value) {
-	  		layedit.sync(editIndex);
-	  	}
-	  });
-	  
-	  //监听提交
-	  /* form.on('submit(post)', function(data){
-	    layer.alert(JSON.stringify(data.field), {
-	      title: '最终的提交信息'
-	    })
-	    return false;
-	  }); */
-
-	  element.tabAdd('tab',{
-	  	title: '标题'
-	  	,content: '选项卡的内容' //支持传入html
-	 });
-
-	});
+  	layui.use(['tree','element'],function(){
+  		var element = layui.element;
+  		
+  		layui.tree({
+		  elem: '#tree' //传入元素选择器
+		  ,skin: 'shihuang'
+		  ,nodes: nodes
+		  ,target: 'ifc'
+		});
+  	});
   </script>
 </body>
 </html>

@@ -287,5 +287,9 @@ table tr:nth-child(2n) {
   height: 118px;
 }
 .blog-footer p:last-child {
-  margin-bottom: 0;
+  margin: 0;
+}
+
+.blog-tags {
+	margin: 0.5rem 0rem;
 }

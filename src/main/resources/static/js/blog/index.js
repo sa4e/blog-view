@@ -1,10 +1,31 @@
 /*
  * blog index 
  */
+//点击打开二维码函数
+function openewm(_tiitle,_content){
+	layer.open({
+		type: 1,
+		title: _tiitle,
+		content: _content,
+		shadeClose: true,
+		maxWidth: 400
+	});
+}
+
+var $wximg = $('#weixinewm');
+$('#weixin').click(function(){
+	return openewm('Wechat QR Code',$wximg);
+});
+
+var $qqimg = $('#qqewm');
+$('#qq').click(function(){
+	return openewm('QQ QR Code',$qqimg);
+});
+
 layui.use(['layer', 'laypage'], function() {
 	var layer = layui.layer,
 		laypage = layui.laypage;
-
+	
 	var url = '/first';
 	var tempData = [10, 11, 12, 13, 14, 15, 16, 17, 18];
 	$.get(url, {
@@ -12,7 +33,7 @@ layui.use(['layer', 'laypage'], function() {
 	}, function(data) {
 		tempData = data;
 	}, 'json');
-
+	
 	//执行一个laypage实例
 	laypage.render({
 		elem: 'page' //注意，这里的 page 是 ID，不用加 # 号
