@@ -29,6 +29,10 @@ blog前端项目主要编写controller和页面静态化(使用Thymeleaf模板�
 - thymeleaf属性特殊用法  
  thymeleaf属性一般用于html标签体,但不能使用静态方法,如格式化时间等，可通过[[]]来实现  
 ![](http://i.imgur.com/jmnYeZQ.png)  
-将读取的时间格式格式化为指定格式
+将读取的时间格式格式化为指定格式  
+
+# 2017/9/11 星期一 下午 9:57:55  
+前台交互界面和后台管理(部分功能界面)终于完成了,明天开始后台代码的编写  
+![](https://i.imgur.com/VdgP8xO.png)
 
 
