@@ -15,7 +15,8 @@ public class MainController {
 	
 	@GetMapping
 	public String index() {
-		return "redirect:/blogs";
+//		return "redirect:/blogs";
+		return "index";
 	}
 	
 

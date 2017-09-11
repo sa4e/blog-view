@@ -2,6 +2,7 @@ package cn.sa4e.blog.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,9 +23,9 @@ public class RootController {
 	@Reference(version = "0.0.1")
 	private IBlogService blogService;
 	
-	@GetMapping
-	public String showRootIndex() {
-		return "root/index";
+	@GetMapping("/{name}")
+	public String showRootIndex(@PathVariable("name") String name) {
+		return "root/" + name;
 	}
 	
 	@PostMapping("/publish")
