@@ -23,7 +23,7 @@ import cn.sa4e.blog.service.IUserService;
 */
 @Controller
 @RequestMapping("/root")
-@SessionAttributes(names = {"user"})
+@SessionAttributes(names = {"user"})	//names类型数组,可定义多个session的Key
 public class RootController {
 	
 	@Reference(version = "0.0.1")
