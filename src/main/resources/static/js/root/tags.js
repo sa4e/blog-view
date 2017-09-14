@@ -1,23 +1,30 @@
 $(function(){
-		var tags = 'default,test,默认的';
-		$.get('getTags',function(data){
-			tags = data;
-		},'text');
-		
-		$('#tags').importTags(tags);	//'foo,dada,dad'
-		
+		$.ajax({
+			type: 'get',
+			url: '/tagall',
+			success: function(data){
+				var tags = data.data;
+				$('#tags').importTags(tags);	//'foo,dada,dad'
+			},
+			error: function(){
+				alert("服务器出错了!");
+			}
+		});
+	
 		$('#tags').tagsInput({
 			width: "100%",
 			height: "300px",
-			removeWithBackspace: false,
 			interactive: false,
-			onRemoveTag: function(tag){		//tagv：标签名
+			onRemoveTag: function(tag){		//tag：标签名
 				$.ajax({
-					type: 'delete',
-					data: {'tagName':tag},
-					url: '/tags/delete',
+					type: 'post',
+					url: '/root/dt',
+					data: {'name':tag},
+					success: function(data){
+						alert(data.message);
+					},
 					error: function(){
-						alert("删除失败！");
+						alert("服务器出错了!");
 					}
 				});
 			}

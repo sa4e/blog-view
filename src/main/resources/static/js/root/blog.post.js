@@ -39,10 +39,14 @@ $('#tags').tagsInput({
 	onAddTag: function(tag){
 		$.ajax({
 			type: 'post',
-			data: {'tagName':tag},
-			url: '/tags/put',
+			data: {'name':tag},
+			url: '/root/ct',
 			success: function(data){
-				if(data.status == 'existed') {	//已存在标签,直接将标签名显示
+				if(!data.result) {
+					layer.msg(data.message,{time:2000});
+					return;
+				}
+				if(data.message == 'existed') {	//已存在标签,直接将标签名显示
 					$(this).addTag(tag);
 				}
 			},
@@ -50,21 +54,24 @@ $('#tags').tagsInput({
 				layer.msg('添加失败,请稍后重试!',{time:2000});
 			}
 		});
-	},
-	onRemoveTag: function(tag){
-		$.ajax({
-			type: 'delete',
-			data: {'tagName':tag},
-			url: '/tags/delete',
-			error: function(){
-				layer.msg('删除失败,请稍后重试!',{time:2000});
-			}
-		});
 	}
 });
 
-$('#category').click(function(){
-		//ajax获取分类列表
+
+//动态获取分类列表
+$(function(){
+	var url = "/catall";
+	var html;
+	$.get(url,function(data){
+		$.each(data.data,function(idx,obj){
+			html += "<option>"+ obj.name +"</option>";
+		});
+		
+		$("select[name='category']").append(html);
+		//刷新select框
+		form.render('select');
+	},'json');
 });
+
 
 });

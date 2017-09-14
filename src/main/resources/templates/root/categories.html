@@ -82,7 +82,7 @@
 			</div>
 			<div class="layui-form-item">
 			    <div class="layui-input-inline">
-			      <button class="layui-btn" lay-submit="">确定</button>
+			      <button class="layui-btn" lay-submit="" lay-filter="post">确定</button>
 			      <button class="layui-btn" type="reset">重置</button>
 			    </div>
 			  </div>
@@ -101,9 +101,26 @@
 <script src="../layui/layui.js" type="text/javascript" th:src="@{/layui/layui.js}"></script>
 
 <script>
-	layui.use(['element','layer'],function(){
+	layui.use(['element','layer','form'],function(){
 		var element = layui.element
-		,layer = layui.layer;
+		,layer = layui.layer
+		,form = layui.form;
+		
+		
+		
+		//监听提交
+		form.on('submit(post)', function(data){
+			var url = "/root/cc";
+			var name = $("input[name='name']").val();
+			$.post(url,{"name":name},function(data){
+				if(!data.result) {
+					layer.msg(data.message);
+				}
+				layer.msg(data.message);
+			},'json');
+			
+			return false;
+		});
 		
 		element.on('collapse(collapse)',function(data){		//监听折叠版事件
 			
