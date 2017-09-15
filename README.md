@@ -21,7 +21,8 @@ blog前端项目主要编写controller和页面静态化(使用Thymeleaf模板�
  5. Fragment表达式: ~{...}  
  thymeleaf的布局属性,一般用于加载页面中重复使用到的片段，如页面的页头，导航栏，页脚等  
  **th:replace: 布局标签，替换整个标签到引入的文件  
- th:include: 布局标签，替换内容到引入的文件**  
+ th:include: 布局标签，替换内容到引入的文件  
+th:insert: 布局标签，将简单地插入指定的片段作为正文的主标签**  
  **片段:**  
  ![](http://i.imgur.com/GSuB942.png)  
  **引用:**  
