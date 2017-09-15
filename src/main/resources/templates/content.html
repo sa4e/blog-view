@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/blog-content.css" th:href="@{/css/blog-content.css}"/>
 </head>
 <body>
-	<div th:include="~{fragments/header :: body}"></div>	<!-- body -->
+	<div th:insert="~{fragments/header :: body}"></div>	<!-- body -->
 	
 <div id="content" class="container">
 	<div class="row">
@@ -73,7 +73,7 @@
 	</div>  <!-- ./row -->
 	
 </div>
-<div th:include="~{fragments/footer :: footer}"></div>	<!-- footer -->
+<div th:insert="~{fragments/footer :: footer}"></div>	<!-- footer -->
 
     <script>
     	$(function(){
